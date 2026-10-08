@@ -40,3 +40,4 @@ Follow `WORKFLOW.md` exactly.
 3. Never schedule a post in the past; if a slot already passed, move it to the next day.
 4. One video asset per post; video must be reachable via public URL.
 5. Report every run; never silently skip a failure.
+6. Video must never contain fade or transitions — mandatory rule, no exceptions.

@@ -8,6 +8,8 @@ Jangan membuat posting parsial: bila satu langkah gagal total, berhenti dan lapo
 `media.generate_video`, 9:16 vertikal ±10 detik. Pertahankan DNA gaya,
 variasikan scene tiap hari (formasi awan, warna dedaunan, dawn vs golden hour).
 
+**WAJIB: video tidak boleh mengandung fade atau transisi dalam bentuk apa pun.**
+
 Prompt default:
 
 > Vertical 9:16 video, dreamy AI digital art style: low-angle upward view of a
@@ -17,7 +19,7 @@ Prompt default:
 > serene surreal fantasy mood. Camera is completely still and static with no
 > movement and no zoom; only the clouds drift slowly and naturally. Audio:
 > calming nostalgic ambient soundscape, soft and dreamy, no human voices, no
-> speech, no singing. No text, no watermark
+> speech, no singing. No text, no watermark, no fade, no transitions
 
 ## 2. Watermark
 
