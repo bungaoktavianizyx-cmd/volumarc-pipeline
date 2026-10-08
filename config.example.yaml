@@ -1,0 +1,49 @@
+# Salin menjadi config.yaml lalu isi dari jawaban intake (SETUP-CHECKLIST.md bagian C)
+
+brand: "@volumarc"
+posts_per_day: 2
+
+slots:
+  - time: "08:00"
+    timezone: "America/New_York"
+  - time: "19:00"
+    timezone: "America/New_York"
+
+captions:
+  language: "en"
+  style: "engaging, dreamy/calm"
+  hashtags: 3
+
+video:
+  aspect: "9:16"
+  duration_sec: 10
+  camera: "static"
+  audio: "calming nostalgic ambient, no human voices"
+  style_prompt: "Vertical 9:16 video, dreamy AI digital art style: low-angle upward view of a dramatic deep-blue sky filled with volumetric white and golden clouds, sun peeking through tree branches with a warm lens flare, natural frame of tree canopy at the edges, hyper-saturated colors, high contrast, golden-hour glow, serene surreal fantasy mood. Camera is completely still and static with no movement and no zoom; only the clouds drift slowly and naturally. Audio: calming nostalgic ambient soundscape, soft and dreamy, no human voices, no speech, no singing. No text, no watermark"
+
+watermark:
+  text: "@volumarc"
+  fontsize: 20
+  opacity: 0.4
+  position: "bottom-center"
+
+buffer:
+  organization_id: ""   # dari bin/buffer.py account
+  channels:
+    facebook: ""        # dari bin/buffer.py channels --org <id>
+    instagram: ""
+    tiktok: ""
+
+github:
+  repo: ""              # owner/repo
+  path_prefix: "videos/"
+
+ai_generated_label: true
+
+pipeline_run:
+  time: "05:00"
+  timezone: "America/New_York"
+
+reporting:
+  chat: true
+  telegram: false
