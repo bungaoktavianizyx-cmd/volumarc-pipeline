@@ -18,6 +18,12 @@ Paket alur kerja siap pakai untuk menjalankan akun konten reels AI: **generate v
 - `config.example.yaml` — template konfigurasi (salin jadi `config.yaml`)
 - `bin/buffer.py` — CLI Buffer GraphQL API (account, channels, create-post)
 
+## Konvensi penamaan
+
+Nama folder media di Google Drive **mengikuti username sosmed** (mis. `@volumarc`
+→ folder `volumarc`), supaya tiap pengguna yang memakai repo ini langsung
+mengenali folder miliknya.
+
 ## Prasyarat
 
 - Akun Buffer dengan channel **Facebook Page, Instagram Business, TikTok** yang sudah
