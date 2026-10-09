@@ -6,9 +6,7 @@ Jangan membuat posting parsial: bila satu langkah gagal total, berhenti dan lapo
 ## 1. Generate video
 
 `media.generate_video`, 9:16 vertikal ±10 detik. Pertahankan DNA gaya,
-variasikan scene tiap hari (formasi awan, warna dedaunan, dawn vs golden hour).
-
-**WAJIB: video tidak boleh mengandung fade atau transisi dalam bentuk apa pun.**
+variasikan scene tiap hari (formasi awan, warna dedaunan, dawn vs golden-hour light).
 
 Prompt default:
 
@@ -19,7 +17,7 @@ Prompt default:
 > serene surreal fantasy mood. Camera is completely still and static with no
 > movement and no zoom; only the clouds drift slowly and naturally. Audio:
 > calming nostalgic ambient soundscape, soft and dreamy, no human voices, no
-> speech, no singing. No text, no watermark, no fade, no transitions
+> speech, no singing. No text, no watermark
 
 ## 2. Watermark
 
@@ -29,16 +27,18 @@ Kecil, transparan, tengah bawah (sesuaikan dari `config.yaml`):
 ffmpeg -y -i INPUT -vf "drawtext=fontfile=/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf:text='@volumarc':fontsize=20:fontcolor=white@0.4:x=(w-text_w)/2:y=h-80" -c:v libx264 -preset medium -crf 20 -c:a copy OUTPUT.mp4
 ```
 
-## 3. Upload ke GitHub
+## 3. Upload ke Google Drive & publikasikan
 
-Pilih nomor N berikutnya yang belum dipakai di `videos/`, lalu:
-
-```bash
-python3 bin/gh.py upload --repo <owner>/<repo> --path videos/sky-reel-<N>.mp4 --file <file-watermark> --message "Add sky reel <N>"
-```
-
-URL publik: `https://raw.githubusercontent.com/<owner>/<repo>/main/videos/sky-reel-<N>.mp4`
-Verifikasi dengan `curl -sI` (harus HTTP 200).
+- Upload file watermark ke folder media (id folder dari `config.yaml`):
+  `hatch_gws_cli drive +upload ...` (lihat `drive +upload --help`; path lokal
+  harus absolut dan di dalam home directory).
+- Jadikan publik ("anyone with the link"):
+  `hatch_gws_cli drive permissions create --params '{"fileId":"<id>"}' --json '{"type":"anyone","role":"reader"}'`
+- URL publik untuk Buffer: `https://drive.google.com/uc?export=download&id=<fileId>`
+- Verifikasi: `curl -s -o /dev/null -w "%{http_code} %{content_type}\n" "<url>"`
+  harus HTTP 200 dan bertipe video. Bila Drive menampilkan halaman konfirmasi,
+  coba ulang atau gunakan file lebih kecil.
+- Nama file: `sky-reel-<N>.mp4`, N berurutan (cek isi folder dulu supaya tidak duplikat).
 
 ## 4. Caption
 
