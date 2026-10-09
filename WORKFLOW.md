@@ -42,12 +42,27 @@ ffmpeg -y -i INPUT -vf "drawtext=fontfile=/usr/share/fonts/truetype/noto/NotoSan
   coba ulang atau gunakan file lebih kecil.
 - Nama file: `sky-reel-<N>.mp4`, N berurutan (cek isi folder dulu supaya tidak duplikat).
 
-## 4. Caption
+## 4. Pindahkan ke folder /uploaded (wajib sebelum Buffer)
+
+Sebelum dijadwalkan ke Buffer, PINDAHKAN dulu file video ke folder `uploaded`
+(id folder dari `config.yaml`). Ini menandai video sudah "diklaim" sehingga
+tidak dijadwalkan dua kali (anti-duplikat) dan Buffer selalu menunjuk alamat
+yang benar.
+
+```bash
+hatch_gws_cli drive files update --params '{"fileId":"<id>","addParents":"<uploaded_folder_id>","removeParents":"<media_folder_id>"}'
+```
+
+Catatan: file ID Drive TIDAK berubah saat dipindah, jadi URL publik
+`https://drive.google.com/uc?export=download&id=<fileId>` tetap valid.
+Verifikasi ulang URL dengan `curl -sL` (harus HTTP 200 video/mp4) setelah pindah.
+
+## 5. Caption
 
 Tulis caption segar sesuai `config.yaml` (default: Inggris, menarik,
 3 hashtag), beda dari hari-hari sebelumnya. Satu caption per slot.
 
-## 5. Schedule via Buffer
+## 6. Schedule via Buffer
 
 Untuk "hari ini" dalam zona waktu target. Slot default: 12:00 UTC (=08:00 ET)
 dan 23:00 UTC (=19:00 ET). Bila slot sudah lewat saat dijalankan, geser ke
@@ -67,7 +82,7 @@ python3 bin/buffer.py create-post --service <facebook|instagram|tiktok> \
 Setiap posting harus mengembalikan `PostActionSuccess` berstatus `scheduled`.
 Gagal → coba sekali lagi dengan input dikoreksi; masih gagal → laporkan dan lanjutkan sisanya.
 
-## 6. Catat & laporkan
+## 7. Catat & laporkan
 
 - Append satu baris ke log harian: tanggal, file video, ID posting.
 - Laporan akhir: video yang dibuat, posting terjadwal + jamnya, caption yang dipakai,
