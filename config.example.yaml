@@ -19,7 +19,6 @@ video:
   duration_sec: 10
   camera: "static"
   audio: "calming nostalgic ambient, no human voices"
-  hard_rules: "no fade, no transitions in the video (mandatory)"
   style_prompt: "Vertical 9:16 video, dreamy AI digital art style: low-angle upward view of a dramatic deep-blue sky filled with volumetric white and golden clouds, sun peeking through tree branches with a warm lens flare, natural frame of tree canopy at the edges, hyper-saturated colors, high contrast, golden-hour glow, serene surreal fantasy mood. Camera is completely still and static with no movement and no zoom; only the clouds drift slowly and naturally. Audio: calming nostalgic ambient soundscape, soft and dreamy, no human voices, no speech, no singing. No text, no watermark"
 
 watermark:
@@ -35,9 +34,9 @@ buffer:
     instagram: ""
     tiktok: ""
 
-github:
-  repo: ""              # owner/repo
-  path_prefix: "videos/"
+google_drive:
+  folder_id: ""         # id folder media di Drive (dari setup)
+  folder_name: "volumarc-media"
 
 ai_generated_label: true
 
