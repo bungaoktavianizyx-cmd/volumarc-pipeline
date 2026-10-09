@@ -36,7 +36,7 @@ buffer:
 
 google_drive:
   folder_id: ""         # id folder media di Drive (dari setup)
-  folder_name: "volumarc-media"
+  folder_name: "volumarc"  # samakan dengan username sosmed
 
 ai_generated_label: true
 
