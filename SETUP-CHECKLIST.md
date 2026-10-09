@@ -20,6 +20,7 @@ Jalankan bagian A → B → C → D berurutan. Jangan meminta key/token lewat ch
    Facebook Page, Instagram, dan TikTok; pastikan `isDisconnected` false.
 2. Drive: `hatch_gws_cli drive status` → pastikan terhubung.
    Buat folder media dengan nama = **username sosmed** (mis. `@volumarc` → `volumarc`),
+   plus folder `uploaded` di sebelahnya untuk video yang sudah dijadwalkan,
    atau pakai folder yang sudah ada:
    `drive files create --params '{"ignoreDefaultVisibility":true}' --json '{"name":"<username>","mimeType":"application/vnd.google-apps.folder","parents":["root"]}'`
    Upload 1 file tes ke folder itu, lalu bagikan publik:
