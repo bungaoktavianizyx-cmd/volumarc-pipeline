@@ -19,8 +19,9 @@ Jalankan bagian A → B → C → D berurutan. Jangan meminta key/token lewat ch
    `bin/buffer.py channels --org <orgId>` → catat channel ID untuk
    Facebook Page, Instagram, dan TikTok; pastikan `isDisconnected` false.
 2. Drive: `hatch_gws_cli drive status` → pastikan terhubung.
-   Buat folder media (atau pakai yang sudah ada):
-   `drive files create --params '{"ignoreDefaultVisibility":true}' --json '{"name":"<nama-folder>","mimeType":"application/vnd.google-apps.folder","parents":["root"]}'`
+   Buat folder media dengan nama = **username sosmed** (mis. `@volumarc` → `volumarc`),
+   atau pakai folder yang sudah ada:
+   `drive files create --params '{"ignoreDefaultVisibility":true}' --json '{"name":"<username>","mimeType":"application/vnd.google-apps.folder","parents":["root"]}'`
    Upload 1 file tes ke folder itu, lalu bagikan publik:
    `drive permissions create --params '{"fileId":"<id>"}' --json '{"type":"anyone","role":"reader"}'`
    URL langsung: `https://drive.google.com/uc?export=download&id=<fileId>` —
@@ -40,7 +41,7 @@ Jalankan bagian A → B → C → D berurutan. Jangan meminta key/token lewat ch
 10. Laporan harian dikirim ke mana? (default: chat; Telegram bila tersedia)
 11. Jadwalkan pipeline otomatis? Jam berapa pipeline berjalan?
     (default: tiap hari 05:00 waktu zona target)
-12. Folder Google Drive untuk media? (buat baru / pakai yang sudah ada)
+12. Folder Google Drive untuk media? (buat baru dengan nama = username sosmed / pakai yang sudah ada)
 
 ## D. Finalisasi
 
