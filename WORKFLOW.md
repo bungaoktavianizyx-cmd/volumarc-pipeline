@@ -29,6 +29,8 @@ ffmpeg -y -i INPUT -vf "drawtext=fontfile=/usr/share/fonts/truetype/noto/NotoSan
 
 ## 3. Upload ke Google Drive & publikasikan
 
+- Konvensi: nama folder media **mengikuti username sosmed** (mis. `@volumarc`
+  → folder `volumarc`).
 - Upload file watermark ke folder media (id folder dari `config.yaml`):
   `hatch_gws_cli drive +upload ...` (lihat `drive +upload --help`; path lokal
   harus absolut dan di dalam home directory).
