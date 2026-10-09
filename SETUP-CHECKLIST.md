@@ -2,27 +2,29 @@
 
 Jalankan bagian A → B → C → D berurutan. Jangan meminta key/token lewat chat.
 
-## A. Dialog kredensial (WAJIB via dialog aman)
+## A. Kredensial & koneksi
 
-1. **Buffer API key** — user membuatnya di publish.buffer.com → Settings → API.
+1. **Buffer API key** (via dialog aman) — user membuatnya di publish.buffer.com → Settings → API.
    Panggil `credentials.request_api_access` dengan:
    provider `buffer`, api_hosts `["api.buffer.com"]`, auth_scheme `api_key`,
    placement `bearer_header`.
-2. **GitHub token** — Personal Access Token (classic) di github.com/settings/tokens,
-   scope `repo`.
-   Panggil `credentials.request_api_access` dengan:
-   provider `github`, api_hosts `["api.github.com"]`, auth_scheme `api_key`,
-   placement `bearer_header`.
+2. **Google Drive** (via konektor, bukan dialog) — jalankan `hatch_gws_cli drive status`.
+   Bila belum terhubung dan ada `connect_url`, tampilkan sebagai
+   `[Connect Google Drive](<connect_url>)` lalu berhenti dan tunggu user mengetuknya.
+   Jangan mengarang URL sendiri.
 
-## B. Verifikasi otomatis (setelah dialog diisi)
+## B. Verifikasi otomatis (setelah A selesai)
 
 1. Buffer: `bin/buffer.py account` → key valid bila mengembalikan email & organizations.
    `bin/buffer.py channels --org <orgId>` → catat channel ID untuk
    Facebook Page, Instagram, dan TikTok; pastikan `isDisconnected` false.
-2. GitHub: `bin/gh.py user` → catat username.
-3. Buat repo media (`bin/gh.py create-repo --name <nama>`), upload 1 file,
-   verifikasi URL publik `https://raw.githubusercontent.com/<owner>/<repo>/main/<path>`
-   mengembalikan HTTP 200.
+2. Drive: `hatch_gws_cli drive status` → pastikan terhubung.
+   Buat folder media (atau pakai yang sudah ada):
+   `drive files create --params '{"ignoreDefaultVisibility":true}' --json '{"name":"<nama-folder>","mimeType":"application/vnd.google-apps.folder","parents":["root"]}'`
+   Upload 1 file tes ke folder itu, lalu bagikan publik:
+   `drive permissions create --params '{"fileId":"<id>"}' --json '{"type":"anyone","role":"reader"}'`
+   URL langsung: `https://drive.google.com/uc?export=download&id=<fileId>` —
+   verifikasi dengan curl harus HTTP 200 dan bertipe video.
 
 ## C. Pertanyaan intake (tanyakan ke user, satu per satu bila perlu)
 
@@ -38,7 +40,7 @@ Jalankan bagian A → B → C → D berurutan. Jangan meminta key/token lewat ch
 10. Laporan harian dikirim ke mana? (default: chat; Telegram bila tersedia)
 11. Jadwalkan pipeline otomatis? Jam berapa pipeline berjalan?
     (default: tiap hari 05:00 waktu zona target)
-12. Repo GitHub untuk hosting media? (buat baru / pakai yang sudah ada)
+12. Folder Google Drive untuk media? (buat baru / pakai yang sudah ada)
 
 ## D. Finalisasi
 
