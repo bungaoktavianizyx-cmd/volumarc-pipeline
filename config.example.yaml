@@ -48,3 +48,14 @@ pipeline_run:
 reporting:
   chat: true
   telegram: false
+
+# Timbun video di awal (opsional) — lihat WORKFLOW.md langkah 0.
+# Bila enabled, cron terpisah generate batch video unik ke folder "Stock",
+# dan pipeline harian mengambil dari stock (tertua dulu) bukan generate baru.
+stock:
+  enabled: false
+  target: 5000         # total video yang ditimbun
+  batch_size: 6        # video per batch (maksimal 6)
+  interval_minutes: 6  # jeda antar batch
+  folder_id: ""        # id folder Drive "Stock"
+  folder_name: "Stock"

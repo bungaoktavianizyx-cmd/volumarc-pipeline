@@ -43,6 +43,17 @@ Jalankan bagian A → B → C → D berurutan. Jangan meminta key/token lewat ch
 11. Jadwalkan pipeline otomatis? Jam berapa pipeline berjalan?
     (default: tiap hari 05:00 waktu zona target)
 12. Folder Google Drive untuk media? (buat baru dengan nama = username sosmed / pakai yang sudah ada)
+13. **Generate stock video dulu sebelum pipeline harian jalan?** Bila ya, video
+    ditimbun dulu dengan cron terpisah (contoh: target 5000 video, 6 video per
+    batch tiap 6 menit) ke folder Drive "Stock", lalu pipeline harian mengambil
+    dari stock (tertua dulu) bukan generate baru. Default: tidak — pipeline
+    generate fresh tiap hari. Bila ya: berapa target video, berapa video per
+    batch, tiap berapa menit?
+14. **Metode penjadwalan ke Buffer:** video yang akan dijadwalkan **dipindah
+    dulu ke folder `/uploaded`** sebelum URL-nya dikirim ke Buffer?
+    (default: ya — wajib. Ini mencegah Buffer menunjuk alamat yang salah dan
+    mencegah video yang sama dijadwalkan dua kali. File ID Drive tidak berubah
+    saat dipindah, jadi URL publik tetap valid.)
 
 ## D. Finalisasi
 

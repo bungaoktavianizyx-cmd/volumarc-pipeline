@@ -3,6 +3,25 @@
 Target audiens dan semua parameter dibaca dari `config.yaml`.
 Jangan membuat posting parsial: bila satu langkah gagal total, berhenti dan laporkan.
 
+## 0. Generate stock (opsional — bila `stock.enabled: true` di config)
+
+Sebelum pipeline harian berjalan, timbun video dulu dengan cron terpisah:
+- Tiap `interval_minutes` (default 6), generate `batch_size` video
+  (default 6, maksimal 6 per run).
+- Prompt tiap video dibuat unik secara kombinatorial
+  (adegan × cahaya × cuaca × elemen gerak); tiap kombinasi yang dipakai dicatat
+  di `manifest.jsonl` supaya tidak ada video kembar.
+- Tiap batch memakai lock file: bila batch sebelumnya masih jalan, tunggu
+  1 menit → cek lagi → masih jalan, tunggu 1 menit lagi → masih juga, skip
+  siklus ini (jangan menumpuk batch).
+- `state.json` (`count`, `next_index`, `target`) diupdate setiap 1 video
+  selesai diupload, supaya crash tidak mengulang atau menghilangkan index.
+- Video diupload ke folder Drive "Stock" (`stock.folder_id`), file lokal
+  dihapus setelah upload.
+- Bila `count >= target`, cron menghapus dirinya sendiri dan berhenti.
+- Pipeline harian kemudian mengambil video dari Stock (index terkecil dulu),
+  bukan generate baru.
+
 ## 1. Generate video
 
 `media.generate_video`, 9:16 vertikal ±10 detik. Pertahankan DNA gaya,
